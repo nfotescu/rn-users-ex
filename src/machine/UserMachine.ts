@@ -1,7 +1,6 @@
-import {assign, createMachine, Sender} from 'xstate';
+import {assign, createMachine} from 'xstate';
 import {User} from '../types/user';
-import {USERS_API_URL} from './constants';
-import { fetchUserService } from './services';
+import {fetchUserService} from './services';
 
 export interface SingleUserFetchMachineContext {
   user?: User;
@@ -33,14 +32,16 @@ const singleUserFetchMachine = createMachine<
     loading: {
       invoke: {
         id: 'getUser',
-        src: (context, event) => fetchUserService(context?.id!),
+        src: context => fetchUserService(context?.id!),
         onDone: {
           target: 'success',
-          actions: assign({user: (context, event) => event.data}),
+          actions: assign({user: (_, event) => event.data}),
         },
         onError: {
           target: 'failure',
-          actions: assign({errorMessage: (context, event) => event.data || 'Something went wrong'}),
+          actions: assign({
+            errorMessage: (_, event) => event.data || 'Something went wrong',
+          }),
         },
       },
     },

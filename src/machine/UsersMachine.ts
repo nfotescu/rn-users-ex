@@ -77,10 +77,10 @@ const usersInfiniteScrollMachine = createMachine<
           skip: context.skip + context.limit,
         };
       }),
-      clearErrorMessage: assign(context => ({
+      clearErrorMessage: assign(_ => ({
         errorMessage: undefined,
       })),
-      assignErrorMessageToContext: assign((context, event: any) => {
+      assignErrorMessageToContext: assign((_, event: any) => {
         return {
           errorMessage: event.data?.message || 'Something went wrong',
         };

@@ -1,11 +1,11 @@
 import {useMachine} from '@xstate/react';
 import React, {FC} from 'react';
-import {ActivityIndicator, Button, FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, Button, FlatList, View} from 'react-native';
 import usersInfiniteScrollMachine from '../machine/UsersMachine';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {getUserFullName} from '../utils';
-import { ErrorComponent } from '../components/ErrorComponent';
+import {ErrorComponent} from '../components/ErrorComponent';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Users'>;
 
@@ -33,7 +33,8 @@ const UsersScreen: FC<Props> = ({navigation}) => {
             title={getUserFullName(item)}
             onPress={() => navigation.navigate('User', {userId: item.id})}
           />
-        )}></FlatList>
+        )}
+      />
     </View>
   );
 };

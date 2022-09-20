@@ -3,13 +3,13 @@ import {useMachine} from '@xstate/react';
 import React, {FC} from 'react';
 import {ActivityIndicator, View, Image, StyleSheet, Text} from 'react-native';
 import {RootStackParamList} from '../../App';
-import { ErrorComponent } from '../components/ErrorComponent';
+import {ErrorComponent} from '../components/ErrorComponent';
 import singleUserFetchMachine from '../machine/UserMachine';
 import {getUserFullName} from '../utils';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'User'>;
 
-const UserScreen: FC<Props> = ({navigation, route}) => {
+const UserScreen: FC<Props> = ({route}) => {
   const [current, send] = useMachine(singleUserFetchMachine, {
     context: {id: route.params.userId},
   });

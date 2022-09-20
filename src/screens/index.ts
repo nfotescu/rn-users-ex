@@ -1,2 +1,2 @@
-export * from "./UsersScreen" ;
-export * from "./UserScreen" ;
+export * from './UsersScreen';
+export * from './UserScreen';
