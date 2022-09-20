@@ -3,6 +3,7 @@ import {useMachine} from '@xstate/react';
 import React, {FC} from 'react';
 import {ActivityIndicator, View, Image, StyleSheet, Text} from 'react-native';
 import {RootStackParamList} from '../../App';
+import { ErrorComponent } from '../components/ErrorComponent';
 import singleUserFetchMachine from '../machine/UserMachine';
 import {getUserFullName} from '../utils';
 
@@ -34,7 +35,7 @@ const UserScreen: FC<Props> = ({navigation, route}) => {
   }
 
   if (current.context.errorMessage) {
-    return <Text>{current.context.errorMessage}</Text>;
+    return <ErrorComponent error={current.context.errorMessage} />;
   }
 
   return (

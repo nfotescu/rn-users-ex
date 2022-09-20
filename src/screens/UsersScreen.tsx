@@ -4,7 +4,8 @@ import {ActivityIndicator, Button, FlatList, Text, View} from 'react-native';
 import usersInfiniteScrollMachine from '../machine/UsersMachine';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
-import { getUserFullName } from '../utils';
+import {getUserFullName} from '../utils';
+import { ErrorComponent } from '../components/ErrorComponent';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Users'>;
 
@@ -16,9 +17,9 @@ const UsersScreen: FC<Props> = ({navigation}) => {
   }
 
   if (current.context.errorMessage) {
-    return <Text>{current.context.errorMessage}</Text>;
+    return <ErrorComponent error={current.context.errorMessage} />;
   }
-  
+
   return (
     <View style={{flex: 1, width: '100%'}}>
       <FlatList
